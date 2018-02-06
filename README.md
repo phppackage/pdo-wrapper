@@ -1,7 +1,7 @@
 ## PDO Wrapper
 
 [![Build Status](https://travis-ci.org/phppackage/pdo-wrapper.svg?branch=master)](https://travis-ci.org/phppackage/pdo-wrapper)
-[![StyleCI](https://styleci.io/repos/REPO_ID_CHANGE_THIS/shield?branch=master)](https://styleci.io/repos/REPO_ID_CHANGE_THIS)
+[![StyleCI](https://styleci.io/repos/120492220/shield?branch=master)](https://styleci.io/repos/120492220)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/phppackage/pdo-wrapper/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/phppackage/pdo-wrapper/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/phppackage/pdo-wrapper/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/phppackage/pdo-wrapper/code-structure/master/code-coverage)
 [![Packagist Version](https://img.shields.io/packagist/v/phppackage/pdo-wrapper.svg?style=flat-square)](https://github.com/phppackage/pdo-wrapper/releases)
