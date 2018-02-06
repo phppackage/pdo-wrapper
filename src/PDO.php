@@ -12,7 +12,7 @@ declare(strict_types=1);
  |
  | If you did not receive a copy of the license and are unable to
  | obtain it through the world-wide-web, please send an email
- | to your-email@example.com so we can send you a copy immediately.
+ | to lawrence@cherone.co.uk so we can send you a copy immediately.
  +-----------------------------------------------------------------------------+
  | Authors:
  |   Lawrence Cherone <lawrence@cherone.co.uk>
@@ -24,7 +24,7 @@ namespace PHPPackage\PDOWrapper;
 class PDO extends \PDO
 {
     /**
-     * @var
+     * @var string
      */
     private $dsn;
     private $username;
@@ -95,13 +95,13 @@ class PDO extends \PDO
      *
      * @return bool
      */
-    public function createDatabase($name): bool
+    public function createDatabase(string $name): bool
     {
         if (!in_array($name, $this->databases())) {
             return (bool) $this->exec("
                 CREATE DATABASE `$name`;
                 CREATE USER '{$this->username}'@'%' IDENTIFIED BY '{$this->password}';
-                GRANT ALL ON `$name`.* TO '{$this->username}'@'localhost';
+                GRANT ALL ON `$name`.* TO '{$this->username}'@'%';
                 FLUSH PRIVILEGES;
             ");
         }
@@ -160,7 +160,7 @@ class PDO extends \PDO
     }
 
     /**
-     * Run query and return PDOStatement
+     * Run query and return PDOStatement or row_count
      *
      * @param string $sql
      * @param array  $values
@@ -194,7 +194,7 @@ class PDO extends \PDO
      * @throws InvalidArgumentException
      * @return int
      */
-    public function multi($sql, $values = []): int
+    public function multi(string $sql, array $values = []): int
     {
         if (empty($sql)) {
             throw new \InvalidArgumentException('1st argument cannot be empty');
@@ -216,31 +216,48 @@ class PDO extends \PDO
     }
 
     /**
-     * Quick queries
-     * Allows you to run a query without chaining the return type manually. This allows for slightly shorter syntax.
+     * Return all rows in result set
+     * 
+     * @param string $sql
+     * @param array  $values
+     * @return array
      */
-
-    public function row($query, $values = array()): array
+    public function all(string $sql, array $values = []): array
     {
-        return $this->run($query, $values)->fetch();
+        return $this->run($sql, $values)->fetchAll();
     }
-
-    public function cell($query, $values = array()): string
+    
+    /**
+     * Return first row in result set
+     * 
+     * @param string $sql
+     * @param array  $values
+     * @return array
+     */
+    public function row(string $sql, array $values = []): array
     {
-        return $this->run($query, $values)->fetchColumn();
+        return $this->run($sql, $values)->fetch();
     }
-
-    public function all($query, $values = array()): array
+    
+    /**
+     * Return first column cell in result set
+     * 
+     * @param string $sql
+     * @param array  $values
+     * @return array
+     */
+    public function cell(string $sql, array $values = []): string
     {
-        return $this->run($query, $values)->fetchAll();
+        return $this->run($sql, $values)->fetchColumn();
     }
 
     /**
-     * Checks import/export system requirements.
+     * Checks system requirements for import/export methods
      *  - Supports only mySQL
      *
      * @param string $method
      * @throws RuntimeException
+     * @return void
      */
     private function checkImportExportRequirements(string $method)
     {
@@ -273,7 +290,7 @@ class PDO extends \PDO
      * @throws RuntimeException
      * @return bool
      */
-    public function import(string $file, $backup = true)
+    public function import(string $file, bool $backup = true)
     {
         $this->checkImportExportRequirements('import');
 
