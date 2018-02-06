@@ -1,9 +1,28 @@
 <?php
 
+/*
+ +-----------------------------------------------------------------------------+
+ | PHPPackage - PDO Wrapper - Unit Test
+ +-----------------------------------------------------------------------------+
+ | Copyright (c)2018 (http://github.com/phppackage/pdo-wrapper)
+ +-----------------------------------------------------------------------------+
+ | This source file is subject to MIT License
+ | that is bundled with this package in the file LICENSE.
+ |
+ | If you did not receive a copy of the license and are unable to
+ | obtain it through the world-wide-web, please send an email
+ | to your-email@example.com so we can send you a copy immediately.
+ +-----------------------------------------------------------------------------+
+ | Authors:
+ |   Lawrence Cherone <lawrence@cherone.co.uk>
+ +-----------------------------------------------------------------------------+
+ */
+ 
 namespace PHPPackage\PDOWrapper;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\{
+    TestCase, Assert
+};
 
 class PDOTest extends TestCase
 {

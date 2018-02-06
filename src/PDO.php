@@ -15,7 +15,7 @@ declare(strict_types=1);
  | to your-email@example.com so we can send you a copy immediately.
  +-----------------------------------------------------------------------------+
  | Authors:
- |   Your Name <your-email@example.com>
+ |   Lawrence Cherone <lawrence@cherone.co.uk>
  +-----------------------------------------------------------------------------+
  */
 
