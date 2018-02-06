@@ -20,8 +20,9 @@
  
 namespace PHPPackage\PDOWrapper;
 
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\{
+    TestCase, Assert
+};
 
 class PDOTest extends TestCase
 {
