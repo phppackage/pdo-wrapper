@@ -26,7 +26,9 @@ class PDO extends \PDO
     /**
      * @var construct arguments
      */
-    private $dsn, $username, $password;
+    private $dsn;
+    private $username;
+    private $password;
 
     /**
      * @var array Default options for database connection.
@@ -66,8 +68,8 @@ class PDO extends \PDO
         $this->options = $options+$this->options;
 
         if (is_null($this->dsn)) {
-			$this->dsn = 'sqlite:/'.sys_get_temp_dir().'/PDOWrapper.db';
-		}
+            $this->dsn = 'sqlite:/'.sys_get_temp_dir().'/PDOWrapper.db';
+        }
 
         parent::__construct($this->dsn, $this->username, $this->password, $this->options);
     }
@@ -178,7 +180,7 @@ class PDO extends \PDO
         if (!is_array($values[0])) {
             $stmt = $this->prepare($sql);
             $stmt->execute($values);
-			return $stmt;
+            return $stmt;
         }
 
         return $this->multi($sql, $values);
@@ -339,5 +341,4 @@ class PDO extends \PDO
         return $this->{$method}(...$arguments);
         // @codeCoverageIgnoreEnd
     }
-
 }
