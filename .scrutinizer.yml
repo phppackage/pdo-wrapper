@@ -105,7 +105,7 @@ build:
     dependencies:
         # Runs before inferred commands
         before:
-            - 'apt install php7.0-{mysql,sqlite}'
+            - 'sudo apt install php7.0-{mysql,sqlite}'
         #    - mkdir web
         #    - cp tests/Server.php web/server.php
     environment:
