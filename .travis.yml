@@ -9,7 +9,6 @@ cache:
   directories:
     - $HOME/.composer/cache
 before_install:
-  - mysql -e 'CREATE TABLE IF NOT EXISTS test;'
   - travis_retry composer self-update
 install:
   - travis_retry composer update --no-interaction --prefer-source
