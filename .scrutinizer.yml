@@ -106,6 +106,9 @@ build:
         # Runs before inferred commands
         before:
             - 'sudo apt update'
+            - 'sudo apt search php7.0-*'
+            - 'sudo apt search php-mysql'
+            - 'sudo apt search php-sqlite'
             - 'sudo apt -y install php7.0-{mysql,sqlite}'
         #    - mkdir web
         #    - cp tests/Server.php web/server.php
