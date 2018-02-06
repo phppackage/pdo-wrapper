@@ -24,7 +24,7 @@ namespace PHPPackage\PDOWrapper;
 class PDO extends \PDO
 {
     /**
-     * @var construct arguments
+     * @var
      */
     private $dsn;
     private $username;
@@ -283,7 +283,6 @@ class PDO extends \PDO
 
         // set working vars
         $database = $this->getDatabaseName();
-        $date = date_create()->format('Y-m-d_H:i:s');
         $dir = dirname($file);
 
         // backup current
