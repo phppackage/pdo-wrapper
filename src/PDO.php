@@ -217,7 +217,7 @@ class PDO extends \PDO
 
     /**
      * Return all rows in result set
-     * 
+     *
      * @param string $sql
      * @param array  $values
      * @return array
@@ -229,7 +229,7 @@ class PDO extends \PDO
     
     /**
      * Return first row in result set
-     * 
+     *
      * @param string $sql
      * @param array  $values
      * @return array
@@ -241,7 +241,7 @@ class PDO extends \PDO
     
     /**
      * Return first column cell in result set
-     * 
+     *
      * @param string $sql
      * @param array  $values
      * @return array
