@@ -82,12 +82,7 @@ class PDO extends \PDO
      */
     public function getDatabaseName(): string
     {
-        // match database from dsn & set working vars
-        if (!preg_match('/dbname=(\w+);/', $this->dsn, $results)) {
-            throw new \RuntimeException('Could not match database name from dsn');
-        }
-
-        return $results[1];
+        return (new Database($this))->name($this->dsn);
     }
 
     /**
@@ -97,15 +92,16 @@ class PDO extends \PDO
      */
     public function createDatabase(string $name): bool
     {
-        if (!in_array($name, $this->databases())) {
-            return (bool) $this->exec("
-                CREATE DATABASE `$name`;
-                CREATE USER '{$this->username}'@'%' IDENTIFIED BY '{$this->password}';
-                GRANT ALL ON `$name`.* TO '{$this->username}'@'%';
-                FLUSH PRIVILEGES;
-            ");
-        }
-        return false;
+        return (new Database($this))->create($name, $this->username, $this->password);
+    }
+    
+    /**
+     * Returns an array of databases
+     * @return mixed
+     */
+    public function databases(): array
+    {
+        return (new Database($this))->all();
     }
 
     /**
@@ -125,22 +121,6 @@ class PDO extends \PDO
             }
         }
         return (!is_null($key) && isset($return[$key])) ? $return[$key] : $return;
-    }
-
-    /**
-     * Returns an array of databases
-     * @return mixed
-     */
-    public function databases(): array
-    {
-        $stmt = $this->query("SHOW DATABASES");
-
-        $result = [];
-        while ($row = $stmt->fetchColumn(0)) {
-            $result[] = $row;
-        }
-
-        return $result;
     }
 
     /**

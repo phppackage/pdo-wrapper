@@ -109,6 +109,9 @@ class PDOTest extends TestCase
     /**
      * @covers PHPPackage\PDOWrapper\PDO::createDatabase
      * @covers PHPPackage\PDOWrapper\PDO::databases
+     * @covers PHPPackage\PDOWrapper\Database::__construct
+     * @covers PHPPackage\PDOWrapper\Database::all
+     * @covers PHPPackage\PDOWrapper\Database::create
      */
     public function testCreateDatabase()
     {
@@ -127,7 +130,10 @@ class PDOTest extends TestCase
     }
 
     /**
+     * @covers PHPPackage\PDOWrapper\PDO::__construct
      * @covers PHPPackage\PDOWrapper\PDO::getDatabaseName
+     * @covers PHPPackage\PDOWrapper\Database::__construct
+     * @covers PHPPackage\PDOWrapper\Database::name
      */
     public function testGetDatabaseName()
     {
@@ -140,6 +146,8 @@ class PDOTest extends TestCase
 
     /**
      * @covers PHPPackage\PDOWrapper\PDO::getDatabaseName
+     * @covers PHPPackage\PDOWrapper\Database::__construct
+     * @covers PHPPackage\PDOWrapper\Database::name
      */
     public function testGetDatabaseNameException()
     {
