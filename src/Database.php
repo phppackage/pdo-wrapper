@@ -29,7 +29,7 @@ class Database
     private $pdo;
 
     /**
-     * 
+     *
      */
     public function __construct(PDO $pdo)
     {
@@ -85,5 +85,4 @@ class Database
 
         return $result;
     }
-
 }
