@@ -24,7 +24,7 @@ namespace PHPPackage\PDOWrapper;
 class Database
 {
     /**
-     * @var PHPPackage\PDOWrapper\PDO
+     * @var \PHPPackage\PDOWrapper\PDO
      */
     private $pdo;
 
