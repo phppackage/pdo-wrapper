@@ -27,6 +27,15 @@ class Database
      * @var \PHPPackage\PDOWrapper\PDO
      */
     private $pdo;
+    
+    /**
+     * @var array PDO attribute keys.
+     */
+    private $attributes = array(
+        'AUTOCOMMIT', 'ERRMODE', 'CASE', 'CLIENT_VERSION', 'CONNECTION_STATUS',
+        'ORACLE_NULLS', 'PERSISTENT', 'PREFETCH', 'SERVER_INFO', 'SERVER_VERSION',
+        'TIMEOUT', 'DRIVER_NAME'
+    );
 
     /**
      *
@@ -34,6 +43,25 @@ class Database
     public function __construct(PDO $pdo)
     {
         $this->pdo = $pdo;
+    }
+    
+    /**
+     * Enumarate PDO attributes
+     *
+     * @param string $key Pick out a attribute by key
+     * @return mixed
+     */
+    public function info(string $key = null)
+    {
+        $return = [];
+        foreach ($this->attributes as $value) {
+            try {
+                $return['PDO::ATTR_'.$value] = $this->pdo->getAttribute(constant('PDO::ATTR_'.$value));
+            } catch (\PDOException $e) {
+                $return['PDO::ATTR_'.$value] = null;
+            }
+        }
+        return (!is_null($key) && isset($return[$key])) ? $return[$key] : $return;
     }
 
     /**
@@ -59,7 +87,7 @@ class Database
      */
     public function create(string $name, $username, $password): bool
     {
-        if (!in_array($name, $this->all())) {
+        if (!in_array($name, $this->databases())) {
             return (bool) $this->pdo->exec("
                 CREATE DATABASE `$name`;
                 CREATE USER '{$username}'@'%' IDENTIFIED BY '{$password}';
@@ -74,9 +102,25 @@ class Database
      * Returns an array of databases
      * @return mixed
      */
-    public function all(): array
+    public function databases(): array
     {
         $stmt = $this->pdo->query("SHOW DATABASES");
+
+        $result = [];
+        while ($row = $stmt->fetchColumn(0)) {
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Returns an array of tables
+     * @return array
+     */
+    public function tables(): array
+    {
+        $stmt = $this->pdo->query("SHOW TABLES");
 
         $result = [];
         while ($row = $stmt->fetchColumn(0)) {

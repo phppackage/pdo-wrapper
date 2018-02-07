@@ -30,7 +30,7 @@ class PDOTest extends TestCase
     const TEST_CLASS = 'PHPPackage\PDOWrapper\PDO';
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
+     *
      */
     public function testObjectInstanceOf()
     {
@@ -39,7 +39,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
+     *
      */
     public function testClassProperties()
     {
@@ -50,18 +50,16 @@ class PDOTest extends TestCase
         $this->assertClassHasAttribute('username', self::TEST_CLASS);
         $this->assertClassHasAttribute('password', self::TEST_CLASS);
         $this->assertClassHasAttribute('options', self::TEST_CLASS);
-        $this->assertClassHasAttribute('attributes', self::TEST_CLASS);
 
         // properties types
         $this->assertInternalType('string', Assert::readAttribute($pdo, 'dsn'));
         $this->assertInternalType('null', Assert::readAttribute($pdo, 'username'));
         $this->assertInternalType('null', Assert::readAttribute($pdo, 'password'));
         $this->assertInternalType('array', Assert::readAttribute($pdo, 'options'));
-        $this->assertInternalType('array', Assert::readAttribute($pdo, 'attributes'));
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
+     *
      */
     public function testClassConstruct()
     {
@@ -92,7 +90,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__call
+     *
      */
     public function testBadMethodCall()
     {
@@ -107,11 +105,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::createDatabase
-     * @covers PHPPackage\PDOWrapper\PDO::databases
-     * @covers PHPPackage\PDOWrapper\Database::__construct
-     * @covers PHPPackage\PDOWrapper\Database::all
-     * @covers PHPPackage\PDOWrapper\Database::create
+     * 
      */
     public function testCreateDatabase()
     {
@@ -130,10 +124,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::getDatabaseName
-     * @covers PHPPackage\PDOWrapper\Database::__construct
-     * @covers PHPPackage\PDOWrapper\Database::name
+     * 
      */
     public function testGetDatabaseName()
     {
@@ -145,9 +136,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::getDatabaseName
-     * @covers PHPPackage\PDOWrapper\Database::__construct
-     * @covers PHPPackage\PDOWrapper\Database::name
+     * 
      */
     public function testGetDatabaseNameException()
     {
@@ -162,8 +151,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::checkImportExportRequirements
-     * @covers PHPPackage\PDOWrapper\PDO::info
+     * 
      */
     public function testCheckImportExportRequirements()
     {
@@ -214,8 +202,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::checkImportExportRequirements
-     * @covers PHPPackage\PDOWrapper\PDO::export
+     * 
      */
     public function testExport()
     {
@@ -229,8 +216,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::checkImportExportRequirements
-     * @covers PHPPackage\PDOWrapper\PDO::export
+     * 
      */
     public function testExportInvalidDestination()
     {
@@ -245,9 +231,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::checkImportExportRequirements
-     * @covers PHPPackage\PDOWrapper\PDO::export
-     * @covers PHPPackage\PDOWrapper\PDO::import
+     * 
      */
     public function testImport()
     {
@@ -264,8 +248,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::checkImportExportRequirements
-     * @covers PHPPackage\PDOWrapper\PDO::import
+     * 
      */
     public function testImportInvalidFile()
     {
@@ -280,12 +263,12 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::info
+     * 
      */
     public function testInfo()
     {
         $pdo = new PDO();
+        $database = new Database($pdo);
 
         $info = $pdo->info();
 
@@ -293,7 +276,7 @@ class PDOTest extends TestCase
         $this->assertInternalType('array', $info);
 
         // all attributes should be checked
-        foreach (Assert::readAttribute($pdo, 'attributes') as $value) {
+        foreach (Assert::readAttribute($database, 'attributes') as $value) {
             $this->assertTrue(in_array('PDO::ATTR_'.$value, $info));
         }
 
@@ -302,7 +285,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
+     * 
      */
     public function testCanInvokePDOMethods()
     {
@@ -343,8 +326,7 @@ class PDOTest extends TestCase
 
     /**
      * Does not work for SQlite, so it should throw exception or be an array
-     *
-     * @covers PHPPackage\PDOWrapper\PDO::databases
+     * 
      */
     public function testDatabases()
     {
@@ -361,7 +343,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::tables
+     * 
      */
     public function testTables()
     {
@@ -400,10 +382,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::exec
-     * @covers PHPPackage\PDOWrapper\PDO::run
-     * @covers PHPPackage\PDOWrapper\PDO::multi
+     * 
      */
     public function testRun()
     {
@@ -463,9 +442,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::exec
-     * @covers PHPPackage\PDOWrapper\PDO::multi
+     * 
      */
     public function testMulti()
     {
@@ -513,10 +490,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::exec
-     * @covers PHPPackage\PDOWrapper\PDO::run
-     * @covers PHPPackage\PDOWrapper\PDO::row
+     * 
      */
     public function testRow()
     {
@@ -554,10 +528,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::exec
-     * @covers PHPPackage\PDOWrapper\PDO::run
-     * @covers PHPPackage\PDOWrapper\PDO::cell
+     * 
      */
     public function testCell()
     {
@@ -590,10 +561,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * @covers PHPPackage\PDOWrapper\PDO::__construct
-     * @covers PHPPackage\PDOWrapper\PDO::exec
-     * @covers PHPPackage\PDOWrapper\PDO::run
-     * @covers PHPPackage\PDOWrapper\PDO::all
+     * 
      */
     public function testAll()
     {

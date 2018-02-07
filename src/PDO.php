@@ -40,15 +40,6 @@ class PDO extends \PDO
     );
 
     /**
-     * @var array PDO attribute keys.
-     */
-    private $attributes = array(
-        'AUTOCOMMIT', 'ERRMODE', 'CASE', 'CLIENT_VERSION', 'CONNECTION_STATUS',
-        'ORACLE_NULLS', 'PERSISTENT', 'PREFETCH', 'SERVER_INFO', 'SERVER_VERSION',
-        'TIMEOUT', 'DRIVER_NAME'
-    );
-
-    /**
      * PDO construct, defaults to tmp sqlite file if no arguments are passed.
      *
      * @param string $dsn
@@ -101,7 +92,7 @@ class PDO extends \PDO
      */
     public function databases(): array
     {
-        return (new Database($this))->all();
+        return (new Database($this))->databases();
     }
 
     /**
@@ -112,15 +103,7 @@ class PDO extends \PDO
      */
     public function info(string $key = null)
     {
-        $return = [];
-        foreach ($this->attributes as $value) {
-            try {
-                $return['PDO::ATTR_'.$value] = $this->getAttribute(constant('PDO::ATTR_'.$value));
-            } catch (\PDOException $e) {
-                $return['PDO::ATTR_'.$value] = null;
-            }
-        }
-        return (!is_null($key) && isset($return[$key])) ? $return[$key] : $return;
+        return (new Database($this))->info($key);
     }
 
     /**
@@ -129,14 +112,7 @@ class PDO extends \PDO
      */
     public function tables(): array
     {
-        $stmt = $this->query("SHOW TABLES");
-
-        $result = [];
-        while ($row = $stmt->fetchColumn(0)) {
-            $result[] = $row;
-        }
-
-        return $result;
+        return (new Database($this))->tables();
     }
 
     /**
