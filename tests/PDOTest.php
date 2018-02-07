@@ -105,7 +105,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testCreateDatabase()
     {
@@ -124,7 +124,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testGetDatabaseName()
     {
@@ -136,7 +136,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testGetDatabaseNameException()
     {
@@ -151,7 +151,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testCheckImportExportRequirements()
     {
@@ -202,7 +202,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testExport()
     {
@@ -216,7 +216,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testExportInvalidDestination()
     {
@@ -231,7 +231,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testImport()
     {
@@ -248,7 +248,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testImportInvalidFile()
     {
@@ -263,7 +263,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testInfo()
     {
@@ -285,7 +285,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testCanInvokePDOMethods()
     {
@@ -326,7 +326,7 @@ class PDOTest extends TestCase
 
     /**
      * Does not work for SQlite, so it should throw exception or be an array
-     * 
+     *
      */
     public function testDatabases()
     {
@@ -343,7 +343,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testTables()
     {
@@ -382,7 +382,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testRun()
     {
@@ -442,7 +442,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testMulti()
     {
@@ -490,7 +490,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testRow()
     {
@@ -528,7 +528,7 @@ class PDOTest extends TestCase
     }
 
     /**
-     * 
+     *
      */
     public function testCell()
     {
@@ -561,7 +561,7 @@ class PDOTest extends TestCase
     }
     
     /**
-     * 
+     *
      */
     public function testAll()
     {
