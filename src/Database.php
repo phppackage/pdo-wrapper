@@ -51,7 +51,7 @@ class Database
      * @param string $key Pick out a attribute by key
      * @return mixed
      */
-    public function attribute(string $key = null) 
+    public function attribute(string $key = null)
     {
         $key = 'PDO::ATTR_'.strtoupper($key);
 
