@@ -194,6 +194,7 @@ class PDOTest extends TestCase
         $method->invoke($pdo, 'import');
 
         try {
+            $pdo = new PDO();
             // all false
             $method->invoke($pdo, 'import');
         } catch (\Exception $e) {
@@ -281,7 +282,7 @@ class PDOTest extends TestCase
         }
 
         // default error mode
-        $this->assertEquals(PDO::ERRMODE_EXCEPTION, $pdo->info('PDO::ATTR_ERRMODE'));
+        $this->assertEquals(PDO::ERRMODE_EXCEPTION, $pdo->info('ERRMODE'));
     }
 
     /**

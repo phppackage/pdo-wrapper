@@ -38,7 +38,7 @@ class Database
     );
 
     /**
-     *
+     * @param \PHPPackage\PDOWrapper\PDO $pdo
      */
     public function __construct(PDO $pdo)
     {
@@ -51,17 +51,35 @@ class Database
      * @param string $key Pick out a attribute by key
      * @return mixed
      */
+    public function attribute(string $key = null) 
+    {
+        $key = 'PDO::ATTR_'.strtoupper($key);
+
+        try {
+            return $this->pdo->getAttribute(constant($key));
+        } catch (\PDOException $e) {
+            return;
+        }
+    }
+    
+    /**
+     * Enumarate PDO attributes
+     *
+     * @param string $key Pick out a attribute by key
+     * @return mixed
+     */
     public function info(string $key = null)
     {
+        if (!is_null($key)) {
+            return $this->attribute($key);
+        }
+        
         $return = [];
         foreach ($this->attributes as $value) {
-            try {
-                $return['PDO::ATTR_'.$value] = $this->pdo->getAttribute(constant('PDO::ATTR_'.$value));
-            } catch (\PDOException $e) {
-                $return['PDO::ATTR_'.$value] = null;
-            }
+            $return['PDO::ATTR_'.$value] = $this->attribute($value);
         }
-        return (!is_null($key) && isset($return[$key])) ? $return[$key] : $return;
+        
+        return $return;
     }
 
     /**
